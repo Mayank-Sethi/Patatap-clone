@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Patatap Clone</title>
+	<link rel="icon" type="image/x-icon" href="http://assets.stickpng.com/thumbs/5aa52073e5b1ba51d4407bcd.png">
+	<link rel="stylesheet" type="text/css" href="patatap.css">
+	<link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
+	<script type="text/javascript" src="paper-full.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.0/howler.min.js" integrity="sha512-ALoawPS0JxHQ+8dGL7htZIlVNRaE/SN9gHD4G8pJJTi9H4BQ/3PjdvhggSGR34g00mvTPFkxQuveQUsJA5664Q==" crossorigin="anonymous"></script>
+	<script type="text/paperscript" canvas="myCanvas">
+	var keyData = {
+	a: {
+		color: "#DB6120",
+		sound: new Howl({
+			src:['A/bubbles.mp3']
+		})
+	},
+	b: {
+		color: "#5999F4",
+		sound: new Howl({
+			src:['A/clay.mp3']
+		})
+	},
+	c: {
+		color: "#8A0D79",
+		sound: new Howl({
+			src:['A/confetti.mp3']
+		})
+	},
+	d: {
+		color: "#8787AA",
+		sound: new Howl({
+			src:['A/corona.mp3']
+		})
+	},
+	e: {
+		color: "#93588B",
+		sound: new Howl({
+			src:['A/dotted-spiral.mp3']
+		})
+	},
+	f: {
+		color: "#A65EA3",
+		sound: new Howl({
+			src:['A/flash-1.mp3']
+		})
+	},
+	g: {
+		color: "#8A2462",
+		sound: new Howl({
+			src:['A/flash-2.mp3']
+		})
+	},
+	h: {
+		color: "#860656",
+		sound: new Howl({
+			src:['A/flash-3.mp3']
+		})
+	},
+	i: {
+		color: "#860656",
+		sound: new Howl({
+			src:['A/glimmer.mp3']
+		})
+	},
+	j: {
+		color: "#6932a8",
+		sound: new Howl({
+			src:['A/moon.mp3']
+		})
+	},
+	k: {
+		color: "#94383e",
+		sound: new Howl({
+			src:['A/pinwheel.mp3']
+		})
+	},
+	l: {
+		color: "#E97772",
+		sound: new Howl({
+			src:['A/piston-1.mp3']
+		})
+	},
+	m: {
+		color: "#790F16",
+		sound: new Howl({
+			src:['A/piston-2.mp3']
+		})
+	},
+	n: {
+		color: "#C3A5AD",
+		sound: new Howl({
+			src:['A/piston-3.mp3']
+		})
+	},
+	o: {
+		color: "#21E307",
+		sound: new Howl({
+			src:['A/prism-1.mp3']
+		})
+	},
+	p: {
+		color: "#9A7E62",
+		sound: new Howl({
+			src:['A/prism-2.mp3']
+		})
+	},
+	q: {
+		color: "#06117F",
+		sound: new Howl({
+			src:['A/prism-3.mp3']
+		})
+	},
+	r: {
+		color: "#07BA51",
+		sound: new Howl({
+			src:['A/splits.mp3']
+		})
+	},
+	s: {
+		color: "#53D9DA",
+		sound: new Howl({
+			src:['A/squiggle.mp3']
+		})
+	},
+	t: {
+		color: "#D4B4A8",
+		sound: new Howl({
+			src:['A/strike.mp3']
+		})
+	},
+	u: {
+		color: "#AA887F",
+		sound: new Howl({
+			src:['A/suspension.mp3']
+		})
+	},
+	v: {
+		color: "#C23C52",
+		sound: new Howl({
+			src:['A/timer.mp3']
+		})
+	},
+	w: {
+		color: "#ACB295",
+		sound: new Howl({
+			src:['A/ufo.mp3']
+		})
+	},
+	x: {
+		color: "#0931B1",
+		sound: new Howl({
+			src:['A/veil.mp3']
+		})
+	},
+	y: {
+		color: "#92E84D",
+		sound: new Howl({
+			src:['A/wipe.mp3']
+		})
+	},
+	z: {
+		color: "#B1A49D",
+		sound: new Howl({
+			src:['A/zig-zag.mp3']
+		})
+	}
+	}
+
+	var circles = [];
+
+	function onKeyDown(event) {
+		if(keyData[event.key]){
+			var maxPoint = new Point(view.size.width, view.size.height);
+			var randomPoint = Point.random();
+			var point = maxPoint * randomPoint;
+			var newCircle = new Path.Circle(point,500)
+			newCircle.fillColor = keyData[event.key].color;
+			keyData[event.key].sound.play();			
+			circles.push(newCircle);
+		}
+	}
+
+	function onFrame(event)
+	{
+		for(var i = 0; i < circles.length; i++)
+			{
+				circles[i].scale(0.9);
+				circles[i].fillColor.hue += 1;
+				//if(circles[i].area < 1)
+				//{
+				//	circles[i].remove();  //remove circle fom canvas
+				//	circles.splice(1,1);  //remove circle from array
+				//	console.log(circles);
+				//}
+			}
+	}
+	</script>
+
+</head>
+<body>
+		<div class="header">
+			<div id="des">
+				<p>This clone is created by <strong>Mayank Sethi</strong><br/>
+				And this is how it works!!  Press any alphabet key to create some music</p>
+			</div>
+			<div id="logoimg">
+				<img src="http://assets.stickpng.com/thumbs/5aa52073e5b1ba51d4407bcd.png">
+			</div>
+			<div id="logo">
+				<h1>Patatap Clone</h1>
+			</div>
+		</div>
+	<canvas id="myCanvas" resize></canvas>
+</body>
+</html>
